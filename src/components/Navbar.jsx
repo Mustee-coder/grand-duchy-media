@@ -15,40 +15,46 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-       <a href="#home">
-  <img
-    src={logo}
-    alt="Grand Duchy Media"
-    className="h-12"
-  />
-</a>
+        <a href="#home">
+          <img
+            src={logo}
+            alt="Grand Duchy Media"
+            className="h-12"
+          />
+        </a>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-8 font-medium text-gray-700">
-  <li>
-    <a href="#home" className="hover:text-blue-600 transition">
-      Home
-    </a>
-  </li>
+          <li>
+            <a href="#home" className="hover:text-blue-600 transition">
+              Home
+            </a>
+          </li>
 
-  <li>
-    <a href="#services" className="hover:text-blue-600 transition">
-      Services
-    </a>
-  </li>
+          <li>
+            <a href="#services" className="hover:text-blue-600 transition">
+              Services
+            </a>
+          </li>
 
-  <li>
-    <a href="#pricing" className="hover:text-blue-600 transition">
-      Pricing
-    </a>
-  </li>
+          <li>
+            <a href="#portfolio" className="hover:text-blue-600 transition">
+              Portfolio
+            </a>
+          </li>
 
-  <li>
-    <a href="#contact" className="hover:text-blue-600 transition">
-      Contact
-    </a>
-  </li>
-</ul>
+          <li>
+            <a href="#pricing" className="hover:text-blue-600 transition">
+              Pricing
+            </a>
+          </li>
+
+          <li>
+            <a href="#contact" className="hover:text-blue-600 transition">
+              Contact
+            </a>
+          </li>
+        </ul>
 
         {/* Desktop WhatsApp */}
         <motion.a
@@ -80,29 +86,35 @@ const Navbar = () => {
           className="md:hidden bg-white shadow-lg"
         >
           <ul className="flex flex-col items-center gap-6 py-6 font-medium text-gray-700">
-<li>
-  <a href="#home" onClick={() => setIsOpen(false)}>
-    Home
-  </a>
-</li>
+            <li>
+              <a href="#home" onClick={() => setIsOpen(false)}>
+                Home
+              </a>
+            </li>
 
-<li>
-  <a href="#services" onClick={() => setIsOpen(false)}>
-    Services
-  </a>
-</li>
+            <li>
+              <a href="#services" onClick={() => setIsOpen(false)}>
+                Services
+              </a>
+            </li>
 
-<li>
-  <a href="#pricing" onClick={() => setIsOpen(false)}>
-    Pricing
-  </a>
-</li>
+            <li>
+              <a href="#portfolio" onClick={() => setIsOpen(false)}>
+                Portfolio
+              </a>
+            </li>
 
-<li>
-  <a href="#contact" onClick={() => setIsOpen(false)}>
-    Contact
-  </a>
-</li>
+            <li>
+              <a href="#pricing" onClick={() => setIsOpen(false)}>
+                Pricing
+              </a>
+            </li>
+
+            <li>
+              <a href="#contact" onClick={() => setIsOpen(false)}>
+                Contact
+              </a>
+            </li>
 
             <a
               href="https://wa.me/918398095525"
