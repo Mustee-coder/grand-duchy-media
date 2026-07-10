@@ -17,10 +17,10 @@ const Navbar = () => {
         {/* Logo */}
         <a href="#home">
           <img
-            src={logo}
-            alt="Grand Duchy Media"
-            className="h-12"
-          />
+  src={logo}
+  alt="Grand Duchy Media"
+  className="h-10 w-auto object-contain rounded-lg"
+/>
         </a>
 
         {/* Desktop Menu */}
