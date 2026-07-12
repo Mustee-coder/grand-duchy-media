@@ -1,6 +1,18 @@
 import { motion } from "framer-motion";
+import { Link2 } from "lucide-react";
 
-// Website Screenshots
+
+
+
+import GraphicDesign from "./GraphicDesign"
+import Cinematography from "./Cinematography"
+import LongFormContent from "./LongFormContent"
+import ShortFormContent from "./ShortFormContent"
+
+
+
+
+// Website Images
 import web1 from "../assets/websites/kodingtree.jpg";
 import web2 from "../assets/websites/zawajon.jpg";
 import web3 from "../assets/websites/vpcstaffing.jpg";
@@ -8,303 +20,166 @@ import web4 from "../assets/websites/toothfit.jpg";
 import web5 from "../assets/websites/barickadvisors.jpg";
 import web6 from "../assets/websites/sapmotors.jpg";
 
-// Videos
-import video1 from "../assets/videos/web.mp4";
-import video2 from "../assets/videos/graphic.mp4";
-import video3 from "../assets/videos/social.mp4";
-import video4 from "../assets/videos/editing.mp4";
-
-// Thumbnail Images
-import thumb1 from "../assets/images/image1.jpg";
-import thumb2 from "../assets/images/image2.jpg";
-import thumb3 from "../assets/images/image3.jpg";
-import thumb4 from "../assets/images/image4.jpg";
-import thumb5 from "../assets/images/image5.jpg";
-import thumb6 from "../assets/images/image6.jpg";
-
 const websites = [
-  {
-    title: "KodingTree",
-    image: web1,
-    url: "https://kodingtree.com",
-  },
-  {
-    title: "Zawajon",
-    image: web2,
-    url: "https://zawajon.com",
-  },
-  {
-    title: "VPC Staffing",
-    image: web3,
-    url: "https://www.vpcstaffing.com",
-  },
-  {
-    title: "ToothFit",
-    image: web4,
-    url: "https://toothfit.in",
-  },
-  {
-    title: "Barick Advisors",
-    image: web5,
-    url: "https://www.barickadvisors.com",
-  },
-  {
-    title: "SAP Motors",
-    image: web6,
-    url: "https://www.sapmotors.com",
-  },
+  { title: "KodingTree", image: web1, url: "https://kodingtree.com" },
+  { title: "Zawajon", image: web2, url: "https://zawajon.com" },
+  { title: "VPC Staffing", image: web3, url: "https://www.vpcstaffing.com" },
+  { title: "ToothFit", image: web4, url: "https://toothfit.in" },
+  { title: "Barick Advisors", image: web5, url: "https://www.barickadvisors.com" },
+  { title: "SAP Motors", image: web6, url: "https://www.sapmotors.com" },
 ];
 
-const videos = [
-  {
-    title: "Website Development",
-    src: video1,
-    description:
-      "Responsive business website built with modern UI, fast performance, and mobile-friendly design.",
-  },
-  {
-    title: "Graphic Design Showcase",
-    src: video2,
-    description:
-      "Creative branding, posters, and motion graphics designed to strengthen brand identity.",
-  },
-  {
-    title: "Social Media Marketing",
-    src: video3,
-    description:
-      "Short-form promotional content created to increase engagement across social media platforms.",
-  },
-  {
-    title: "Commercial Video Editing",
-    src: video4,
-    description:
-      "Professional editing with smooth transitions, color grading, and cinematic storytelling.",
-  },
-];
-const thumbnails = [
-  {
-    title: "Stop Chasing Money",
-    image: thumb1,
-    description:
-      "High-impact YouTube thumbnail designed to attract more clicks and engagement.",
-  },
-  {
-    title: "Master Anything",
-    image: thumb2,
-    description:
-      "Educational thumbnail with bold typography and eye-catching visuals.",
-  },
-  {
-    title: "Break the Rules",
-    image: thumb3,
-    description:
-      "Creative thumbnail focused on increasing viewer curiosity and click-through rate.",
-  },
-  {
-    title: "Never Use This Hand Gesture",
-    image: thumb4,
-    description:
-      "Attention-grabbing thumbnail designed for educational and awareness content.",
-  },
-  {
-    title: "$60K Per Month",
-    image: thumb5,
-    description:
-      "Business-focused thumbnail highlighting income and entrepreneurship content.",
-  },
-  {
-    title: "Just Copy Me eBook",
-    image: thumb6,
-    description:
-      "Professional promotional thumbnail created for digital product marketing.",
-  },
-];
+// Split into two rows so each marquee has its own set of cards
+const topRow = websites.filter((_, i) => i % 2 === 0);
+const bottomRow = websites.filter((_, i) => i % 2 !== 0);
+
+// Single browser-preview card used inside the marquee
+const SiteCard = ({ site }) => (
+  <a
+    href={site.url}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group block w-[280px] sm:w-[220px] shrink-0 rounded-2xl overflow-hidden shadow-lg ring-1 ring-black/5 bg-white hover:shadow-2xl transition-shadow duration-300"
+  >
+    {/* Browser chrome */}
+    <div className="flex items-center gap-1.5 px-3 py-2 bg-gray-100 border-b border-gray-200">
+      <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
+      <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+      <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
+    </div>
+
+    {/* Site preview */}
+    <div className="relative h-52 overflow-hidden bg-gray-50">
+      <img
+        src={site.image}
+        alt={site.title}
+        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+        draggable={false}
+      />
+
+      {/* LIVE SITE badge */}
+      <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-black/75 backdrop-blur-sm text-white text-xs font-semibold tracking-wide px-3 py-1.5 rounded-full">
+        <Link2 size={13} />
+        LIVE SITE
+      </div>
+    </div>
+
+    {/* Title strip */}
+    <div className="px-4 py-3 bg-white">
+      <h4 className="font-bold text-gray-900 text-base truncate">{site.title}</h4>
+    </div>
+  </a>
+);
+
+// Continuous, seamless CSS-driven marquee row (no slide-based delay/jerk)
+const MarqueeRow = ({ items, direction = "left", duration = 30 }) => {
+  // Duplicate the set so the loop from -50% back to 0% is invisible
+  const track = [...items, ...items];
+
+  return (
+  
+  
+  
+  
+    <div className="marquee-viewport overflow-hidden">
+      <div
+        className={`marquee-track flex gap-5 w-max ${
+          direction === "left" ? "animate-marquee-left" : "animate-marquee-right"
+        }`}
+        style={{ "--marquee-duration": `${duration}s` }}
+      >
+        {track.map((site, i) => (
+          <SiteCard key={`${site.title}-${i}`} site={site} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Portfolio = () => {
   return (
-    <section id="portfolio" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6">
+  <>
+  
+    
+    <section id="portfolio" className="py-24 bg-[#eef6fb] overflow-hidden">
+        
+       <div className="text-center mb-16">
+  <span className="text-blue-600 uppercase tracking-[5px] font-semibold text-sm">
+    Our Work
+  </span>
 
+  <h2 className="mt-4 text-4xl md:text-5xl font-bold text-gray-900">
+    Our <span className="text-amber-500">Portfolio</span>
+  </h2>
+
+  <p className="mt-4 max-w-2xl mx-auto text-gray-600">
+    Explore our creative services, including video production, social media marketing,
+    graphic design, and website development.
+  </p>
+</div>
+
+<LongFormContent />
+<ShortFormContent />
+<Cinematography />
+<GraphicDesign />
+        
+      <style>{`
+        @keyframes marquee-left {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        @keyframes marquee-right {
+          from { transform: translateX(-50%); }
+          to { transform: translateX(0); }
+        }
+        .animate-marquee-left {
+          animation: marquee-left var(--marquee-duration) linear infinite;
+        }
+        .animate-marquee-right {
+          animation: marquee-right var(--marquee-duration) linear infinite;
+        }
+        .marquee-viewport:hover .marquee-track {
+          animation-play-state: paused;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-marquee-left, .animate-marquee-right {
+            animation: none;
+          }
+        }
+      `}</style>
+
+      <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center"
+          className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-            Our Portfolio
-          </h2>
+         <span className="inline-block text-blue-600 uppercase tracking-[5px] font-semibold text-sm">
+  Website Development
+</span>
 
-          <p className="mt-4 max-w-2xl mx-auto text-gray-600 text-lg">
-            Explore our latest work in website development, video editing,
-            graphic design and social media marketing.
-          </p>
+<h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
+  Website <span className="text-amber-500">Development</span>
+</h2>
+
+<div className="w-24 h-1 bg-blue-600 mx-auto rounded-full mt-6" />
+
+<p className="mt-6 max-w-2xl mx-auto text-gray-600 text-lg leading-8">
+  Modern, responsive, and high-performance websites built for businesses, startups, and brands. Click any project below to explore the live website.
+</p>
         </motion.div>
+      </div>
 
-        {/* Website Development */}
-        <div className="mt-20">
-          <h3 className="text-3xl font-bold text-center text-gray-900">
-            Website Development
-          </h3>
-
-          <p className="text-center text-gray-600 mt-3 mb-10">
-            Professional websites designed to help businesses grow online.
-          </p>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {websites.map((site, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.08,
-                }}
-                whileHover={{
-                  y: -8,
-                  scale: 1.02,
-                }}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition"
-              >
-                <img
-                  src={site.image}
-                  alt={site.title}
-                  className="w-full h-60 object-cover"
-                />
-
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900">
-                    {site.title}
-                  </h3>
-
-                  <a
-                    href={site.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block mt-4 text-blue-600 font-semibold hover:text-blue-700"
-                  >
-                    Visit Website →
-                  </a>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-                {/* Video Editing */}
-        <div className="mt-24">
-          <h3 className="text-3xl font-bold text-center text-gray-900">
-            Video Editing
-          </h3>
-
-          <p className="text-center text-gray-600 mt-3 mb-10">
-            Engaging and high-quality videos crafted for brands, businesses,
-            and social media.
-          </p>
-
-          <div className="grid gap-8 md:grid-cols-2">
-           {videos.map((video, index) => (
-  <motion.div
-    key={index}
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5, delay: index * 0.08 }}
-    whileHover={{ y: -8, scale: 1.02 }}
-    className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition"
-  >
-    <video
-      src={video.src}
-      controls
-      preload="metadata"
-      playsInline
-      className="w-full h-72 object-cover"
-    />
-
-    <div className="p-6">
-      <h3 className="text-xl font-bold text-gray-900">
-        {video.title}
-      </h3>
-
-      <p className="mt-3 text-gray-600">
-        {video.description}
-      </p>
-    </div>
-  </motion.div>
-))}
-          </div>
-        </div>
-                {/* Thumbnail Designs */}
-        <div className="mt-24">
-          <h3 className="text-3xl font-bold text-center text-gray-900">
-            Thumbnail Designs
-          </h3>
-
-          <p className="text-center text-gray-600 mt-3 mb-10">
-            Eye-catching thumbnails designed to increase clicks, engagement,
-            and brand visibility.
-          </p>
-
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {thumbnails.map((thumb, index) => (
-  <motion.div
-    key={index}
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5, delay: index * 0.08 }}
-    whileHover={{ y: -8, scale: 1.02 }}
-    className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition"
-  >
-    <img
-  src={thumb.image}
-  alt={thumb.title}
-  className="w-full h-72 object-contain bg-white"
-/>
-
-    <div className="p-6">
-      <h3 className="text-xl font-bold text-gray-900">
-        {thumb.title}
-      </h3>
-
-      <p className="mt-3 text-gray-600">
-        {thumb.description}
-      </p>
-    </div>
-  </motion.div>
-))}
-          </div>
-        </div>
-                {/* Call To Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-24 bg-blue-600 rounded-3xl p-10 md:p-16 text-center text-white"
-        >
-          <h3 className="text-3xl md:text-4xl font-bold">
-            Ready to Start Your Next Project?
-          </h3>
-
-          <p className="mt-4 max-w-2xl mx-auto text-blue-100">
-            Whether you need a professional website, engaging videos, creative
-            thumbnails, or social media marketing, our team is ready to help
-            bring your ideas to life.
-          </p>
-
-          <a
-            href="#contact"
-            className="inline-block mt-8 bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition"
-          >
-            Get in Touch
-          </a>
-        </motion.div>
-
+      {/* Two marquee rows, scrolling in opposite directions, full-bleed, no delay/jerk */}
+      <div className="space-y-6">
+        <MarqueeRow items={topRow} direction="left" duration={28} />
+        <MarqueeRow items={bottomRow} direction="right" duration={28} />
       </div>
     </section>
+    </>
   );
 };
 
